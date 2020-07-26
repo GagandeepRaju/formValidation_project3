@@ -228,7 +228,6 @@ submit.addEventListener("click", (e) => {
     emailInput.nextElementSibling.style.display !== "none"
   ) {
     formIsValid = false;
-    console.log(formIsValid);
   }
   if (formIsValid) {
     window.location.href = window.location.href;
