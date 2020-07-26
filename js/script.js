@@ -38,6 +38,8 @@ function init() {
   creditCard.style.display = "";
   bitCoin.style.display = "none";
   document.querySelector(".other").style.display = "none";
+  const firstEl = paymentOpt.firstElementChild;
+  paymentOpt.remove(firstEl);
   cleanSelection();
   defaultOpt();
 }
@@ -168,8 +170,7 @@ cvv.addEventListener("input", createListener(isValidCvv));
   any error then form will not be submitted*/
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-
-  if (totalCost == 0) {
+  if (totalCost === 0) {
     document.getElementById("Activity").style.display = "";
     formIsValid = false;
   } else {
@@ -217,6 +218,18 @@ submit.addEventListener("click", (e) => {
     }
   }
 
+  //Checking all the required error display sttus if any of them is in error mode form will not be submitted
+  if (
+    cvv.nextElementSibling.style.display !== "none" ||
+    zip.nextElementSibling.style.display !== "none" ||
+    ccNum.nextElementSibling.style.display !== "none" ||
+    document.getElementById("Activity").style.display !== "none" ||
+    usernameInput.nextElementSibling.style.display !== "none" ||
+    emailInput.nextElementSibling.style.display !== "none"
+  ) {
+    formIsValid = false;
+    console.log(formIsValid);
+  }
   if (formIsValid) {
     window.location.href = window.location.href;
   }
